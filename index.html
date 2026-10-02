@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mis XV - Sayra</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/imagen png tarjetas/chica.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/imagen png tarjetas/chica.png">
+</head>
+
+<body>
+<div class="destellos"></div>  
+<!-- HERO -->
+
+<header class="hero">
+    <div class="capa"></div>
+
+    <div class="contenido">
+
+        <img src="img/imagen png tarjetas/corona.png" class="corona">
+
+        <h2>Mis XV Años</h2>
+
+        <h1>Sayra</h1>
+
+        <p>07 • Noviembre • 2026</p>
+
+        <button id="abrir">
+            Abrir Invitación
+        </button>
+
+    </div>
+
+</header>
+
+<!-- CUENTA REGRESIVA -->
+
+<section class="contador">
+
+    <h2>Faltan...</h2>
+
+    <div class="tiempo">
+
+        <div>
+
+            <span id="dias">00</span>
+
+            <p>Días</p>
+
+        </div>
+
+        <div>
+
+            <span id="horas">00</span>
+
+            <p>Horas</p>
+
+        </div>
+
+        <div>
+
+            <span id="minutos">00</span>
+
+            <p>Minutos</p>
+
+        </div>
+
+        <div>
+
+            <span id="segundos">00</span>
+
+            <p>Segundos</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- HISTORIA -->
+<section class="historia">
+
+    <div class="decoracion-historia">
+
+        <img src="img/imagen png tarjetas/ub4.png" alt="Decoración">
+
+    </div>
+
+    <div class="texto-historia">
+
+        <span class="pequeno-titulo">Una noche especial</span>
+
+        <h2>Como en un cuento de hadas...</h2>
+
+        <p>
+            Hoy se abre un capítulo lleno de magia.
+            Te invito a acompañarme en mi noche soñada,
+            mis 15 años, donde cada paso será un sueño
+            hecho realidad.
+        </p>
+
+        <p class="firma">Sayra</p>
+
+    </div>
+
+</section>
+
+<!-- EVENTO -->
+<section class="evento">
+
+    <h2>Detalles del Evento</h2>
+
+    <p class="subtitulo-evento">
+        Todo está preparado para compartir una noche inolvidable.
+    </p>
+
+    <div class="datos">
+
+        <div>
+            <h3>Fecha</h3>
+            <p>07 de Noviembre de 2026</p>
+        </div>
+
+        <div>
+            <h3>Hora</h3>
+            <p>21:00 hs</p>
+        </div>
+
+        <div>
+            <h3>Lugar</h3>
+            <p>Salón Aoma Albardón</p>
+
+            <button id="abrir-mapa">
+                Ver Mapa
+            </button>
+        </div>
+
+    </div>
+
+</section>
+<!-- REGALOS -->
+
+<section class="regalos" id="seccionRegalo">
+
+    <img src="img/imagen png tarjetas/moño.png"
+         class="decoracion-regalo"
+         alt="Decoración">
+
+    <div class="regalos-contenido">
+
+        <span class="pequeno-titulo">Si deseas regalarme algo...</span>
+
+        <h2>Tu cariño es mi mejor regalo</h2>
+
+        <p>
+            Pero si querés tener un detalle conmigo,
+            podés hacerlo mediante transferencia.
+        </p>
+
+        <div class="regalo-caja">
+
+            <span>Alias</span>
+
+            <h3 id="alias">sayra.xv.2026</h3>
+
+            <button id="copiarAlias">
+                Copiar alias
+            </button>
+
+            <p id="mensajeCopia"></p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- FOOTER -->
+<footer class="cierre">
+
+    <img src="img/imagen png tarjetas/chica.png"
+         class="flor-cierre"
+         alt="Decoración">
+
+    <p>Gracias por acompañarme en esta noche tan especial</p>
+
+    <h2>Mis XV</h2>
+
+    <h1>Sayra</h1>
+
+    <span>07 • Noviembre • 2026</span>
+
+    <div class="marca-agua">
+
+        <p>Invitaciones digitales</p>
+
+        <strong>Diseñado por Maury Espejo</strong>
+
+        <a href="https://wa.me/5492645407334" target="_blank">
+            ¿Querés una invitación así? Contactame
+        </a>
+
+    </div>
+
+</footer>
+<div class="player">
+
+    <div class="cover">
+
+        <img src="img/pngwing.com (1).png" alt="Disco">
+
+    </div>
+
+    <div class="music-info">
+
+        <span class="playing">Reproduciendo...</span>
+
+        <h3>Photograph</h3>
+
+        <p>Ed Sheeran</p>
+
+        <div class="wave">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+    <button id="btnPlay">
+        ❚❚
+    </button>
+
+</div>
+
+<audio id="audio" loop preload="auto">
+
+    <source src="audio/WhatsApp Audio 2026-07-28 at 20.33.18.mp4" type="audio/mp4">
+
+</audio>
+
+
+</body>
+<script src="script.js"></script>
+</html>
