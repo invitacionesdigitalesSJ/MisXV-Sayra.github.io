@@ -1,128 +1,129 @@
-/*==============================
-        BOTÓN ABRIR
-==============================*/
+
+/* ==============================
+        ELEMENTOS PRINCIPALES
+============================== */
 
 const boton = document.getElementById("abrir");
 const botonMapa = document.getElementById("abrir-mapa");
 const audio = document.getElementById("audio");
 const btn = document.getElementById("btnPlay");
 const reproductor = document.querySelector(".player");
+
 let invitacionAbierta = false;
 let audioReanudable = false;
 
 
-/*==============================
+/* ==============================
         ABRIR INVITACIÓN
-==============================*/
+============================== */
 
-boton.addEventListener("click", function(){
+boton.addEventListener("click", async function() {
 
     invitacionAbierta = true;
 
-    // Comenzar música
-    audio.play();
-    audioReanudable = true;
+    try {
+        await audio.play();
+        audioReanudable = true;
+        btn.innerHTML = "❚❚";
+        reproductor.classList.add("reproduciendo");
+    } catch (error) {
+        btn.innerHTML = "▶";
+        reproductor.classList.remove("reproduciendo");
+        console.log("No se pudo iniciar la música:", error);
+    }
 
-    // Mostrar reproductor
     reproductor.classList.add("mostrar");
 
-    // Activar animaciones del reproductor
-    reproductor.classList.add("reproduciendo");
-
-    // Cambiar botón
-    btn.innerHTML = "❚❚";
-
-    // Bajar hasta la cuenta regresiva
     document.querySelector(".contador").scrollIntoView({
         behavior: "smooth"
     });
 
+    controlarReproductorMovil();
 });
 
 
-/*==============================
+/* ==============================
         BOTÓN MAPA
-==============================*/
+============================== */
 
-botonMapa.addEventListener("click", function(event){
+botonMapa.addEventListener("click", function(event) {
 
     event.preventDefault();
 
-    const urlMapa = "https://maps.app.goo.gl/5kSbPhgeX4y5h4HVA";
+    const urlMapa =
+        "https://maps.app.goo.gl/5kSbPhgeX4y5h4HVA";
 
-    window.open(urlMapa, "_blank", "noopener,noreferrer");
-
+    window.open(
+        urlMapa,
+        "_blank",
+        "noopener,noreferrer"
+    );
 });
 
 
-/*==============================
-      CUENTA REGRESIVA
-==============================*/
+/* ==============================
+        CUENTA REGRESIVA
+============================== */
 
-const fechaEvento = new Date("November 7, 2026 21:00:00").getTime();
+const fechaEvento =
+    new Date("2026-11-07T21:00:00-03:00").getTime();
 
-function actualizarContador(){
+function actualizarContador() {
 
-    const hoy = new Date().getTime();
+    const hoy = Date.now();
 
-    const diferencia = Math.max(0, fechaEvento - hoy);
+    const diferencia = Math.max(
+        0,
+        fechaEvento - hoy
+    );
 
     const dias = Math.floor(
         diferencia / (1000 * 60 * 60 * 24)
     );
 
     const horas = Math.floor(
-        (diferencia % (1000 * 60 * 60 * 24))
-        / (1000 * 60 * 60)
+        (diferencia % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
     );
 
     const minutos = Math.floor(
-        (diferencia % (1000 * 60 * 60))
-        / (1000 * 60)
+        (diferencia % (1000 * 60 * 60)) /
+        (1000 * 60)
     );
 
     const segundos = Math.floor(
-        (diferencia % (1000 * 60))
-        / 1000
+        (diferencia % (1000 * 60)) / 1000
     );
 
-
-    document.getElementById("dias").innerHTML = dias;
-
-    document.getElementById("horas").innerHTML = horas;
-
-    document.getElementById("minutos").innerHTML = minutos;
-
-    document.getElementById("segundos").innerHTML = segundos;
-
+    document.getElementById("dias").textContent = dias;
+    document.getElementById("horas").textContent = horas;
+    document.getElementById("minutos").textContent = minutos;
+    document.getElementById("segundos").textContent = segundos;
 }
-
-setInterval(actualizarContador, 1000);
 
 actualizarContador();
 
+setInterval(actualizarContador, 1000);
 
-/*==============================
-      EFECTO AL HACER SCROLL
-==============================*/
+
+/* ==============================
+        ANIMACIÓN AL SCROLL
+============================== */
 
 const secciones = document.querySelectorAll("section");
 
-function mostrarSecciones(){
+function mostrarSecciones() {
 
-    secciones.forEach(function(seccion){
+    secciones.forEach(function(seccion) {
 
         const posicion =
             seccion.getBoundingClientRect().top;
 
-        if(posicion < window.innerHeight - 120){
-
+        if (posicion < window.innerHeight - 120) {
             seccion.classList.add("visible");
-
         }
 
     });
-
 }
 
 window.addEventListener("scroll", mostrarSecciones);
@@ -130,60 +131,86 @@ window.addEventListener("scroll", mostrarSecciones);
 mostrarSecciones();
 
 
-/*==============================
-        REPRODUCTOR
-==============================*/
+/* ==============================
+        REPRODUCTOR DE MÚSICA
+============================== */
 
-btn.addEventListener("click", function(){
+btn.addEventListener("click", async function() {
 
-    if(audio.paused){
+    if (audio.paused) {
 
-        // Reproducir
-        audio.play();
-        audioReanudable = true;
+        try {
+            await audio.play();
 
-        // Cambiar icono
-        btn.innerHTML = "❚❚";
+            audioReanudable = true;
 
-        // Activar animaciones
-        reproductor.classList.add("reproduciendo");
+            btn.innerHTML = "❚❚";
 
-    }else{
+            reproductor.classList.add("reproduciendo");
 
-        // Pausar
+        } catch (error) {
+            console.log("Error al reproducir música:", error);
+        }
+
+    } else {
+
         audio.pause();
 
-        // Cambiar icono
+        audioReanudable = false;
+
         btn.innerHTML = "▶";
 
-        // Detener animaciones
         reproductor.classList.remove("reproduciendo");
-
     }
-
 });
 
+
+/* ==============================
+    PAUSAR MÚSICA EN SEGUNDO PLANO
+============================== */
+
 function pausarAudioPorBackground() {
+
     if (!audioReanudable) return;
 
     if (!audio.paused) {
+
         audio.pause();
+
         btn.innerHTML = "▶";
+
         reproductor.classList.remove("reproduciendo");
     }
 }
 
-function reanudarAudioSiCorresponde() {
+async function reanudarAudioSiCorresponde() {
+
     if (!audioReanudable) return;
 
-    if (document.visibilityState === "visible" && audio.paused && invitacionAbierta) {
-        audio.play();
-        btn.innerHTML = "❚❚";
-        reproductor.classList.add("reproduciendo");
+    if (
+        document.visibilityState === "visible" &&
+        audio.paused &&
+        invitacionAbierta
+    ) {
+
+        try {
+            await audio.play();
+
+            btn.innerHTML = "❚❚";
+
+            reproductor.classList.add("reproduciendo");
+
+        } catch (error) {
+            console.log(
+                "El navegador no permitió reanudar la música.",
+                error
+            );
+        }
     }
 }
 
 document.addEventListener("visibilitychange", function() {
+
     if (document.visibilityState === "hidden") {
         pausarAudioPorBackground();
     } else {
@@ -193,28 +220,46 @@ document.addEventListener("visibilitychange", function() {
 
 window.addEventListener("blur", pausarAudioPorBackground);
 window.addEventListener("focus", reanudarAudioSiCorresponde);
-/* ===========================
+
+
+/* ==============================
         COPIAR ALIAS
-=========================== */
+============================== */
 
 const copiarAlias = document.getElementById("copiarAlias");
 const alias = document.getElementById("alias");
 const mensajeCopia = document.getElementById("mensajeCopia");
 
-copiarAlias.addEventListener("click", function(){
+copiarAlias.addEventListener("click", async function() {
 
-    navigator.clipboard.writeText(alias.innerText);
+    try {
 
-    mensajeCopia.innerHTML = "Alias copiado ✓";
+        await navigator.clipboard.writeText(
+            alias.innerText
+        );
 
+        mensajeCopia.textContent = "Alias copiado ✓";
+
+    } catch (error) {
+
+        mensajeCopia.textContent =
+            "No se pudo copiar. Podés seleccionar el alias.";
+
+        console.log(error);
+    }
 });
-/* ===========================
-        DESTELLOS
-=========================== */
 
-const contenedorDestellos = document.querySelector(".destellos");
+
+/* ==============================
+        DESTELLOS
+============================== */
+
+const contenedorDestellos =
+    document.querySelector(".destellos");
 
 function crearDestello() {
+
+    if (!contenedorDestellos) return;
 
     const destello = document.createElement("span");
 
@@ -236,25 +281,28 @@ function crearDestello() {
 }
 
 setInterval(crearDestello, 600);
-/*================================
-   OCULTAR REPRODUCTOR EN CELULAR
-================================*/
 
-const seccionRegalo = document.getElementById("seccionRegalo");
+
+/* ==============================
+   OCULTAR REPRODUCTOR EN CELULAR
+============================== */
+
+const seccionRegalo =
+    document.getElementById("seccionRegalo");
 
 function controlarReproductorMovil() {
 
     if (!invitacionAbierta) {
+
         reproductor.classList.remove("mostrar");
         return;
     }
 
-    // Solo funciona en celulares
     if (window.innerWidth < 768) {
 
-        const posicion = seccionRegalo.getBoundingClientRect().top;
+        const posicion =
+            seccionRegalo.getBoundingClientRect().top;
 
-        // Cuando llega a la sección del alias
         if (posicion <= window.innerHeight * 0.7) {
 
             reproductor.classList.remove("mostrar");
@@ -262,96 +310,88 @@ function controlarReproductorMovil() {
         } else {
 
             reproductor.classList.add("mostrar");
-
         }
+
     } else {
+
         reproductor.classList.add("mostrar");
     }
 }
 
-window.addEventListener("scroll", controlarReproductorMovil);
-window.addEventListener("resize", controlarReproductorMovil);
+window.addEventListener(
+    "scroll",
+    controlarReproductorMovil
+);
 
-/* ===========================
-      VALIDAR RECUERDOS
-=========================== */
+window.addEventListener(
+    "resize",
+    controlarReproductorMovil
+);
 
-const formRecuerdos = document.getElementById("formRecuerdos");
-const archivosRecuerdos = document.getElementById("archivosRecuerdos");
-const estadoRecuerdos = document.getElementById("estadoRecuerdos");
 
-const LIMITE_ARCHIVO = 10 * 1024 * 1024;
-
-formRecuerdos.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const archivos = Array.from(archivosRecuerdos.files);
-
-    // Verificar que se seleccionaron fotos
-    if (archivos.length === 0) {
-        estadoRecuerdos.textContent =
-            "Seleccioná al menos una foto.";
-        return;
-    }
-
-    // Verificar el tamaño de cada foto
-    const archivoGrande = archivos.find(
-        archivo => archivo.size > LIMITE_ARCHIVO
-    );
-
-    if (archivoGrande) {
-        estadoRecuerdos.textContent =
-            "La foto " + archivoGrande.name +
-            " supera los 10 MB.";
-        return;
-    }
-
-    // Permitir solamente JPG, PNG y WebP
-    const tiposPermitidos = [
-        "image/jpeg",
-        "image/png",
-        "image/webp"
-    ];
-
-    const archivoNoPermitido = archivos.find(
-        archivo => !tiposPermitidos.includes(archivo.type)
-    );
-
-    if (archivoNoPermitido) {
-        estadoRecuerdos.textContent =
-            "Solo podés subir fotos JPG, PNG o WebP.";
-        return;
-    }
-
-    // Confirmar que las fotos son válidas
-    estadoRecuerdos.textContent =
-        "¡Fotos listas para subir! Falta conectar Google Drive.";
-});
-
-/* ALTURA AUTOMÁTICA DEL FORMULARIO DE FOTOS */
+/* ======================================
+   ALTURA AUTOMÁTICA DEL FORMULARIO SAYRA
+====================================== */
 
 window.addEventListener("message", function(event) {
 
-    const iframe = document.getElementById("iframeRecuerdos");
+    const iframe =
+        document.getElementById("iframeRecuerdos");
 
     if (!iframe) return;
 
+    if (
+        !event.data ||
+        event.data.tipo !== "sayra-formulario-altura"
+    ) {
+        return;
+    }
+
+    console.log(
+        "Mensaje de altura recibido:",
+        event.origin,
+        event.data
+    );
+
     const origenValido =
         event.origin === "https://script.google.com" ||
-        event.origin.endsWith(".googleusercontent.com") &&
-        event.origin.startsWith("https://");
+        (
+            event.origin.startsWith("https://") &&
+            event.origin.endsWith(".googleusercontent.com")
+        );
 
-    if (!origenValido) return;
-    if (event.source !== iframe.contentWindow) return;
+    if (!origenValido) {
+        console.log("Origen no permitido");
+        return;
+    }
 
-    if (event.data?.tipo === "sayra-formulario-altura") {
+    if (event.source !== iframe.contentWindow) {
+        console.log(
+            "El mensaje proviene de un marco diferente."
+        );
+        return;
+    }
 
-        const altura = Number(event.data.alto);
+    const altura = Number(event.data.alto);
 
-        if (Number.isFinite(altura) && altura >= 200 && altura <= 2000) {
-            iframe.style.height = altura + "px";
-        }
+    if (
+        Number.isFinite(altura) &&
+        altura >= 200 &&
+        altura <= 2000
+    ) {
+
+        iframe.style.height = altura + "px";
+
+        console.log(
+            "Nueva altura aplicada:",
+            altura
+        );
     }
 });
+
+
+/* ==============================
+        INICIALIZACIÓN
+============================== */
 
 controlarReproductorMovil();
