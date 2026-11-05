@@ -1044,3 +1044,12 @@ footer.cierre {
         height: 520px;
     }
 }
+
+.contenedor-formulario-drive iframe {
+    display: block;
+    width: 100%;
+    height: 480px;
+    border: none;
+    background: white;
+    transition: height 0.2s ease;
+}
