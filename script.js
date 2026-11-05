@@ -328,15 +328,13 @@ window.addEventListener(
     controlarReproductorMovil
 );
 
-
 /* ======================================
    ALTURA AUTOMÁTICA DEL FORMULARIO SAYRA
 ====================================== */
 
 window.addEventListener("message", function(event) {
 
-    const iframe =
-        document.getElementById("iframeRecuerdos");
+    const iframe = document.getElementById("iframeRecuerdos");
 
     if (!iframe) return;
 
@@ -347,30 +345,16 @@ window.addEventListener("message", function(event) {
         return;
     }
 
-    console.log(
-        "Mensaje de altura recibido:",
-        event.origin,
-        event.data
-    );
-
     const origenValido =
         event.origin === "https://script.google.com" ||
-        (
-            event.origin.startsWith("https://") &&
-            event.origin.endsWith(".googleusercontent.com")
-        );
+        /^https:\/\/([a-z0-9-]+\.)*googleusercontent\.com$/i
+            .test(event.origin);
 
-    if (!origenValido) {
-        console.log("Origen no permitido");
-        return;
-    }
+    if (!origenValido) return;
 
-    if (event.source !== iframe.contentWindow) {
-        console.log(
-            "El mensaje proviene de un marco diferente."
-        );
-        return;
-    }
+    // Apps Script puede utilizar marcos internos.
+    // Se valida el origen y el tipo de mensaje,
+    // sin exigir que venga del marco inmediato.
 
     const altura = Number(event.data.alto);
 
@@ -379,16 +363,14 @@ window.addEventListener("message", function(event) {
         altura >= 200 &&
         altura <= 2000
     ) {
-
-        iframe.style.height = altura + "px";
+        iframe.style.height = Math.ceil(altura) + "px";
 
         console.log(
-            "Nueva altura aplicada:",
+            "Altura automática aplicada:",
             altura
         );
     }
 });
-
 
 /* ==============================
         INICIALIZACIÓN
