@@ -1045,3 +1045,34 @@ footer.cierre {
         border-radius: 18px;
     }
 }
+
+
+/* FORMULARIO DE FOTOS - SAYRA */
+
+.contenedor-formulario-drive {
+    width: 100%;
+    max-width: 650px;
+    margin: 25px auto 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.contenedor-formulario-drive iframe {
+    display: block;
+    width: 100%;
+    height: 480px;
+    border: none;
+    background: #fff;
+}
+
+@media (max-width: 600px) {
+    .contenedor-formulario-drive {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .contenedor-formulario-drive iframe {
+        height: 520px;
+    }
+}
