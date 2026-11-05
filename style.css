@@ -998,43 +998,30 @@ footer.cierre {
 .contenedor-formulario-drive {
     width: 100%;
     max-width: 650px;
-    margin: 25px auto 0;
+    margin: 20px auto 0;
     padding: 0;
     border-radius: 20px;
     overflow: hidden;
     background: #fff;
 }
 
-.contenedor-formulario-drive iframe {
+#iframeRecuerdos {
     display: block;
     width: 100%;
     height: 480px;
     border: none;
-    border-radius: 20px;
     background: #fff;
-    transition: height 0.2s ease;
 }
 
-
-/* FORMULARIO DE FOTOS - CELULARES */
+/* CELULARES */
 
 @media (max-width: 600px) {
-
     .contenedor-formulario-drive {
-        width: 100%;
-        margin: 20px auto 0;
-        padding: 0;
+        margin-top: 15px;
         border-radius: 18px;
-        overflow: hidden;
     }
 
-    .contenedor-formulario-drive iframe {
-        display: block;
-        width: 100%;
+    #iframeRecuerdos {
         height: 420px;
-        border: none;
-        border-radius: 18px;
-        background: white;
     }
 }
-
