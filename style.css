@@ -427,6 +427,118 @@ section h2 {
 }
 
 /* ===========================
+       COMPARTIR RECUERDOS
+=========================== */
+
+.recuerdos {
+    background: #fff5f8;
+    text-align: center;
+}
+
+.recuerdos h2 {
+    color: #d48ca1;
+    margin: 15px 0 20px;
+}
+
+.recuerdos-descripcion {
+    max-width: 600px;
+    margin: 0 auto 35px;
+    color: #777;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1.7;
+}
+
+#formRecuerdos {
+    max-width: 500px;
+    margin: auto;
+    padding: 35px;
+    background: white;
+    border: 1px solid #f0d5de;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    text-align: left;
+}
+
+#formRecuerdos label {
+    display: block;
+    margin: 18px 0 10px;
+    color: #777;
+    font-size: 14px;
+}
+
+#nombreInvitado,
+#archivosRecuerdos {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ead5dc;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#archivosRecuerdos {
+    background: #fff9fb;
+    font-size: 13px;
+}
+
+.ayuda-archivos {
+    margin-top: 12px;
+    color: #999;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+#btnSubirRecuerdos {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    background: #d48ca1;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#btnSubirRecuerdos:hover {
+    background: #bd758d;
+    transform: translateY(-2px);
+}
+
+.progreso-recuerdos {
+    height: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+    background: #f2dce3;
+    border-radius: 20px;
+}
+
+#barraRecuerdos {
+    width: 0;
+    height: 100%;
+    background: #d48ca1;
+    transition: width .3s;
+}
+
+#estadoRecuerdos {
+    margin-top: 15px;
+    color: #bd758d;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    #formRecuerdos {
+        padding: 22px;
+    }
+
+    .recuerdos-descripcion {
+        font-size: 19px;
+    }
+}
+
+/* ===========================
           REGALOS
 =========================== */
 
