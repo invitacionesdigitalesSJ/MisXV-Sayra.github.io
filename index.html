@@ -145,67 +145,31 @@
     </div>
 
 </section>
-    
+
 <!-- COMPARTIR RECUERDOS -->
 <section class="recuerdos" id="recuerdos">
 
-    <span class="pequeno-titulo">Momentos inolvidables</span>
+    <span class="pequeno-titulo">
+        Momentos inolvidables
+    </span>
 
     <h2>Compartí tus recuerdos</h2>
 
     <p class="recuerdos-descripcion">
-        Cada foto y cada video cuentan una parte de esta noche.
-        Si capturaste un momento especial, compartilo conmigo
-        para que podamos recordarlo siempre.
+        Cada foto guarda un momento especial.
+        Si sacaste fotos durante mis XV, compartilas
+        conmigo para que podamos revivir juntos
+        esta noche inolvidable. 💗
     </p>
 
-    <form id="formRecuerdos">
-
-        <label for="nombreInvitado">Tu nombre (opcional)</label>
-
-        <input
-            type="text"
-            id="nombreInvitado"
-            placeholder="¿Cómo te llamás?"
-            maxlength="60"
-        >
-
-        <label for="archivosRecuerdos">Tus fotos</label>>
-
-        <input
-            type="file"
-            id="archivosRecuerdos"
-            accept="image/jpeg,image/png,image/webp"
-            multiple
-            required
-        >
-
-        <p class="ayuda-archivos">
-            Podés seleccionar varias fotos.
-            Máximo 10 MB por imagen.
-        </p>
-
-        <button type="submit" id="btnSubirRecuerdos">
-            Subir mis recuerdos
-        </button>
-
-        <div class="progreso-recuerdos" id="progresoRecuerdos" hidden>
-            <div id="barraRecuerdos"></div>
-        </div>
-
-        <p id="estadoRecuerdos" role="status" aria-live="polite"></p>
-
-    </form>
-
-<!-- PRUEBA DE FORMULARIO GOOGLE DRIVE -->
-
-<div class="contenedor-formulario-drive">
-    <iframe
-        src="https://script.google.com/macros/s/AKfycbyqb-tgS8NIEjDkKECqsfZ3tcqg-umQEPlsxfV-YdYbo-S0tU5MpUR2Gq2iQT9H4Z0O/exec"
-        title="Subir fotos de los XV de Sayra"
-        loading="lazy">
-    </iframe>
-</div>
+    <div class="contenedor-formulario-drive">
+        <iframe
+            src="https://script.google.com/macros/s/AKfycbyqb-tgS8NIEjDkKECqsfZ3tcqg-umQEPlsxfV-YdYbo-S0tU5MpUR2Gq2iQT9H4Z0O/exec"
+            title="Compartí tus fotos de los XV de Sayra"
+            loading="lazy"
+            allow="screen-wake-lock">
+        </iframe>
+    </div>
 
 </section>
 <!-- REGALOS -->
