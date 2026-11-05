@@ -1016,12 +1016,14 @@ footer.cierre {
 }
 
 
-/* CELULARES */
+/* FORMULARIO DE FOTOS - CELULARES */
+
 @media (max-width: 600px) {
 
     .contenedor-formulario-drive {
         width: 100%;
         margin: 20px auto 0;
+        padding: 0;
         border-radius: 18px;
         overflow: hidden;
     }
@@ -1029,9 +1031,10 @@ footer.cierre {
     .contenedor-formulario-drive iframe {
         display: block;
         width: 100%;
-        height: 650px;
+        height: 420px;
         border: none;
         border-radius: 18px;
-        background: #fff;
+        background: white;
     }
 }
+
