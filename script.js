@@ -65,7 +65,7 @@ function actualizarContador(){
 
     const hoy = new Date().getTime();
 
-    const diferencia = fechaEvento - hoy;
+    const diferencia = Math.max(0, fechaEvento - hoy);
 
     const dias = Math.floor(
         diferencia / (1000 * 60 * 60 * 24)
