@@ -145,6 +145,59 @@
     </div>
 
 </section>
+    
+<!-- COMPARTIR RECUERDOS -->
+<section class="recuerdos" id="recuerdos">
+
+    <span class="pequeno-titulo">Momentos inolvidables</span>
+
+    <h2>Compartí tus recuerdos</h2>
+
+    <p class="recuerdos-descripcion">
+        Cada foto y cada video cuentan una parte de esta noche.
+        Si capturaste un momento especial, compartilo conmigo
+        para que podamos recordarlo siempre.
+    </p>
+
+    <form id="formRecuerdos">
+
+        <label for="nombreInvitado">Tu nombre (opcional)</label>
+
+        <input
+            type="text"
+            id="nombreInvitado"
+            placeholder="¿Cómo te llamás?"
+            maxlength="60"
+        >
+
+        <label for="archivosRecuerdos">Tus fotos y videos</label>
+
+        <input
+            type="file"
+            id="archivosRecuerdos"
+            accept="image/*,video/mp4,video/quicktime"
+            multiple
+            required
+        >
+
+        <p class="ayuda-archivos">
+            Podés seleccionar varias fotos y videos cortos.
+            Máximo 100 MB por archivo.
+        </p>
+
+        <button type="submit" id="btnSubirRecuerdos">
+            Subir mis recuerdos
+        </button>
+
+        <div class="progreso-recuerdos" id="progresoRecuerdos" hidden>
+            <div id="barraRecuerdos"></div>
+        </div>
+
+        <p id="estadoRecuerdos" role="status" aria-live="polite"></p>
+
+    </form>
+
+</section>
 <!-- REGALOS -->
 
 <section class="regalos" id="seccionRegalo">
