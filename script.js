@@ -280,43 +280,52 @@ const formRecuerdos = document.getElementById("formRecuerdos");
 const archivosRecuerdos = document.getElementById("archivosRecuerdos");
 const estadoRecuerdos = document.getElementById("estadoRecuerdos");
 
-const LIMITE_ARCHIVO = 100 * 1024 * 1024;
+const LIMITE_ARCHIVO = 10 * 1024 * 1024;
 
 formRecuerdos.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const archivos = Array.from(archivosRecuerdos.files);
 
+    // Verificar que se seleccionaron fotos
     if (archivos.length === 0) {
-        estadoRecuerdos.textContent = "Seleccioná al menos un archivo.";
+        estadoRecuerdos.textContent =
+            "Seleccioná al menos una foto.";
         return;
     }
 
+    // Verificar el tamaño de cada foto
     const archivoGrande = archivos.find(
         archivo => archivo.size > LIMITE_ARCHIVO
     );
 
     if (archivoGrande) {
         estadoRecuerdos.textContent =
-            "El archivo " + archivoGrande.name +
-            " supera los 100 MB.";
+            "La foto " + archivoGrande.name +
+            " supera los 10 MB.";
         return;
     }
 
-    const archivoNoPermitido = archivos.find(archivo =>
-        !archivo.type.startsWith("image/") &&
-        archivo.type !== "video/mp4" &&
-        archivo.type !== "video/quicktime"
+    // Permitir solamente JPG, PNG y WebP
+    const tiposPermitidos = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    const archivoNoPermitido = archivos.find(
+        archivo => !tiposPermitidos.includes(archivo.type)
     );
 
     if (archivoNoPermitido) {
         estadoRecuerdos.textContent =
-            "Seleccionaste un formato de archivo no permitido.";
+            "Solo podés subir fotos JPG, PNG o WebP.";
         return;
     }
 
+    // Confirmar que las fotos son válidas
     estadoRecuerdos.textContent =
-        "Archivos listos. Falta conectar la subida a Google Drive.";
+        "¡Fotos listas para subir! Falta conectar Google Drive.";
 });
 
 controlarReproductorMovil();
