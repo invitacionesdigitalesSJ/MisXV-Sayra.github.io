@@ -538,6 +538,64 @@ section h2 {
     }
 }
 
+/* BOTÓN PARA SELECCIONAR FOTOS Y VIDEOS */
+
+#archivosRecuerdos {
+    width: 100%;
+    padding: 12px;
+    background: #fff9fb;
+    border: 1px solid #ead5dc;
+    border-radius: 15px;
+    color: #777;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Estilo del botón Elegir archivos */
+
+#archivosRecuerdos::file-selector-button {
+    background: linear-gradient(135deg, #d48ca1, #c47791);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    margin-right: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .3s ease, transform .3s ease;
+}
+
+/* Efecto al pasar el mouse */
+
+#archivosRecuerdos::file-selector-button:hover {
+    background: #b96f89;
+}
+
+/* Cuando el usuario selecciona el campo */
+
+#archivosRecuerdos:focus-visible {
+    outline: 2px solid #d48ca1;
+    outline-offset: 3px;
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 768px) {
+    #archivosRecuerdos {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    #archivosRecuerdos::file-selector-button {
+        padding: 11px 14px;
+        margin-right: 8px;
+        font-size: 12px;
+    }
+}
+
 /* ===========================
           REGALOS
 =========================== */
