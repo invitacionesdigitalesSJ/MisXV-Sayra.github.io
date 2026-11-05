@@ -272,4 +272,51 @@ function controlarReproductorMovil() {
 window.addEventListener("scroll", controlarReproductorMovil);
 window.addEventListener("resize", controlarReproductorMovil);
 
+/* ===========================
+      VALIDAR RECUERDOS
+=========================== */
+
+const formRecuerdos = document.getElementById("formRecuerdos");
+const archivosRecuerdos = document.getElementById("archivosRecuerdos");
+const estadoRecuerdos = document.getElementById("estadoRecuerdos");
+
+const LIMITE_ARCHIVO = 100 * 1024 * 1024;
+
+formRecuerdos.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const archivos = Array.from(archivosRecuerdos.files);
+
+    if (archivos.length === 0) {
+        estadoRecuerdos.textContent = "Seleccioná al menos un archivo.";
+        return;
+    }
+
+    const archivoGrande = archivos.find(
+        archivo => archivo.size > LIMITE_ARCHIVO
+    );
+
+    if (archivoGrande) {
+        estadoRecuerdos.textContent =
+            "El archivo " + archivoGrande.name +
+            " supera los 100 MB.";
+        return;
+    }
+
+    const archivoNoPermitido = archivos.find(archivo =>
+        !archivo.type.startsWith("image/") &&
+        archivo.type !== "video/mp4" &&
+        archivo.type !== "video/quicktime"
+    );
+
+    if (archivoNoPermitido) {
+        estadoRecuerdos.textContent =
+            "Seleccionaste un formato de archivo no permitido.";
+        return;
+    }
+
+    estadoRecuerdos.textContent =
+        "Archivos listos. Falta conectar la subida a Google Drive.";
+});
+
 controlarReproductorMovil();
