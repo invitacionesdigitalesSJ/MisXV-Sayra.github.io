@@ -328,50 +328,6 @@ window.addEventListener(
     controlarReproductorMovil
 );
 
-/* ======================================
-   ALTURA AUTOMÁTICA DEL FORMULARIO SAYRA
-====================================== */
-
-window.addEventListener("message", function(event) {
-
-    const iframe = document.getElementById("iframeRecuerdos");
-
-    if (!iframe) return;
-
-    if (
-        !event.data ||
-        event.data.tipo !== "sayra-formulario-altura"
-    ) {
-        return;
-    }
-
-    const origenValido =
-        event.origin === "https://script.google.com" ||
-        /^https:\/\/([a-z0-9-]+\.)*googleusercontent\.com$/i
-            .test(event.origin);
-
-    if (!origenValido) return;
-
-    // Apps Script puede utilizar marcos internos.
-    // Se valida el origen y el tipo de mensaje,
-    // sin exigir que venga del marco inmediato.
-
-    const altura = Number(event.data.alto);
-
-    if (
-        Number.isFinite(altura) &&
-        altura >= 200 &&
-        altura <= 2000
-    ) {
-        iframe.style.height = Math.ceil(altura) + "px";
-
-        console.log(
-            "Altura automática aplicada:",
-            altura
-        );
-    }
-});
-
 /* ==============================
         INICIALIZACIÓN
 ============================== */
