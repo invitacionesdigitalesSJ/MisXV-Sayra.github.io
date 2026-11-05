@@ -328,4 +328,30 @@ formRecuerdos.addEventListener("submit", function(event) {
         "¡Fotos listas para subir! Falta conectar Google Drive.";
 });
 
+/* ALTURA AUTOMÁTICA DEL FORMULARIO DE FOTOS */
+
+window.addEventListener("message", function(event) {
+
+    const iframe = document.getElementById("iframeRecuerdos");
+
+    if (!iframe) return;
+
+    const origenValido =
+        event.origin === "https://script.google.com" ||
+        event.origin.endsWith(".googleusercontent.com") &&
+        event.origin.startsWith("https://");
+
+    if (!origenValido) return;
+    if (event.source !== iframe.contentWindow) return;
+
+    if (event.data?.tipo === "sayra-formulario-altura") {
+
+        const altura = Number(event.data.alto);
+
+        if (Number.isFinite(altura) && altura >= 200 && altura <= 2000) {
+            iframe.style.height = altura + "px";
+        }
+    }
+});
+
 controlarReproductorMovil();
