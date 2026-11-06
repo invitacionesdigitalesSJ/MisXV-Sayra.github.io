@@ -1,9 +1,8 @@
-
 /* ==============================
         ELEMENTOS PRINCIPALES
 ============================== */
 
-const boton = document.getElementById("abrir");
+const boton = document.getElementById("abrir-invitacion");
 const botonMapa = document.getElementById("abrir-mapa");
 const audio = document.getElementById("audio");
 const btn = document.getElementById("btnPlay");
@@ -34,8 +33,9 @@ boton.addEventListener("click", async function() {
 
     reproductor.classList.add("mostrar");
 
-    document.querySelector(".contador").scrollIntoView({
-        behavior: "smooth"
+    document.getElementById("subir-fotos").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
     });
 
     controlarReproductorMovil();
