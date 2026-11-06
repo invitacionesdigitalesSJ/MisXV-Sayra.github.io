@@ -2,7 +2,7 @@
         ELEMENTOS PRINCIPALES
 ============================== */
 
-const boton = document.getElementById("abrir-invitacion");
+const boton = document.getElementById("abrir");
 const botonMapa = document.getElementById("abrir-mapa");
 const audio = document.getElementById("audio");
 const btn = document.getElementById("btnPlay");
@@ -32,11 +32,22 @@ boton.addEventListener("click", async function() {
     }
 
     reproductor.classList.add("mostrar");
+    // Fecha y hora de los XV de Sayra (Argentina)
+const fechaXV = new Date("2026-11-07T21:00:00-03:00");
+const ahora = new Date();
 
-    document.getElementById("subir-fotos").scrollIntoView({
+if (ahora >= fechaXV) {
+    // Durante la fiesta: ir a subir fotos
+    document.getElementById("recuerdos").scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
+} else {
+    // Antes de la fiesta: ir a la cuenta regresiva
+    document.querySelector(".contador").scrollIntoView({
+        behavior: "smooth"
+    });
+}
 
     controlarReproductorMovil();
 });
