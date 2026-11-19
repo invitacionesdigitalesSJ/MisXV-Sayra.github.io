@@ -76,8 +76,7 @@ botonMapa.addEventListener("click", function(event) {
         CUENTA REGRESIVA
 ============================== */
 
-const fechaEvento =
-    new Date("2026-11-19T21:00:00-03:00").getTime();
+const fechaEvento = new Date("2026-11-19T21:00:00-03:00").getTime();
 
 function actualizarContador() {
 
