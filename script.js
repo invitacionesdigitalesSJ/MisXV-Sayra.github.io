@@ -33,7 +33,7 @@ boton.addEventListener("click", async function() {
 
     reproductor.classList.add("mostrar");
     // Fecha y hora de los XV de Sayra (Argentina)
-const fechaXV = new Date("2026-11-07T21:00:00-03:00");
+const fechaXV = new Date("2026-11-19T21:00:00-03:00");
 const ahora = new Date();
 
 if (ahora >= fechaXV) {
