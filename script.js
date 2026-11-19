@@ -77,7 +77,7 @@ botonMapa.addEventListener("click", function(event) {
 ============================== */
 
 const fechaEvento =
-    new Date("2026-11-07T21:00:00-03:00").getTime();
+    new Date("2026-11-19T21:00:00-03:00").getTime();
 
 function actualizarContador() {
 
